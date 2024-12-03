@@ -10,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-const appTimeOut = time.Second * 10
+const appTimeOut = time.Second * 20
 
 func (app *Config) sendSMS() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -20,11 +20,11 @@ func (app *Config) sendSMS() gin.HandlerFunc {
 		fmt.Println("payload: ", payload)
 		app.validateBody(c, &payload)
 
-		newData := data.OTPData {
-			PhoneNumber: payload.PhoneNumber,
-		}
+		// newData := data.OTPData {
+		// 	PhoneNumber: payload.PhoneNumber,
+		// }
 
-		_, err := app.twilioSendOTP(newData.PhoneNumber)
+		_, err := app.twilioSendOTP("+16812442636")
 		if err != nil {
 			app.errorJSON(c,err)
 			return

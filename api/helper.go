@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -17,6 +18,7 @@ var validate = validator.New()
 
 func (app *Config) validateBody(c *gin.Context, data any) error {
 	//validate the request body
+	fmt.Println("validatebody",c.BindJSON(&data))
 	if err := c.BindJSON(&data); err != nil {
 		return err
 	}
